@@ -16,7 +16,7 @@ const TOPIC_QUERY = gql`
 
 export default function TopicPage() {
   const { topic } = useParams()
-  const { loading, error, data } = useQuery(TOPIC_QUERY, {
+  const { loading, error, data } = useQuery<{topic: TopicWithRelatedTopics}>(TOPIC_QUERY, {
     variables: { search: topic }
   });
 
@@ -27,9 +27,10 @@ export default function TopicPage() {
     <div className="TopicPage">
       <h1>{topic}</h1>
       <ul>
-        {data.topic.relatedTopics.map((rtopic: Topic) => (
+        {data!.topic.relatedTopics.map(rtopic => (
         <li>
           <Link to={`/${rtopic.name}`}>{rtopic.name}</Link>
+          <span> ⭐️ {rtopic.stargazerCount}</span>
         </li>
         ))}
       </ul>
@@ -41,4 +42,8 @@ interface Topic {
   id: number;
   name: string;
   stargazerCount: number;
+}
+
+interface TopicWithRelatedTopics extends Topic {
+  relatedTopics: Topic[]
 }
