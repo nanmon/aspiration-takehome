@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { Link, useParams } from "react-router-dom";
 
 const TOPIC_QUERY = gql`
   query FindTopic($search: String!) {
@@ -13,10 +14,8 @@ const TOPIC_QUERY = gql`
   }
 `
 
-interface Props {
-  topic?: string;
-}
-export default function TopicPage({ topic = 'react' }: Props) {
+export default function TopicPage() {
+  const { topic } = useParams()
   const { loading, error, data } = useQuery(TOPIC_QUERY, {
     variables: { search: topic }
   });
@@ -30,7 +29,7 @@ export default function TopicPage({ topic = 'react' }: Props) {
       <ul>
         {data.topic.relatedTopics.map((rtopic: Topic) => (
         <li>
-          <a href={`#${rtopic.name}`}>{rtopic.name}</a>
+          <Link to={`/${rtopic.name}`}>{rtopic.name}</Link>
         </li>
         ))}
       </ul>
