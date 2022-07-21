@@ -12,3 +12,18 @@ Set up your GitHub API Token and create a `.env.local` file as described in `.en
 ```
 npm start
 ```
+
+# Dev Notes
+Quick review of libs used
+
+## Apollo
+GraphQL client
+
+## React Router
+Client-side routing
+
+## styled-components
+CSS-in-JS
+
+## Typescript
+Just for preference, to avoid type errors
