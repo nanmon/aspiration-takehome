@@ -27,3 +27,18 @@ CSS-in-JS
 
 ## Typescript
 Just for preference, to avoid type errors
+
+# Future Improvements
+
+## Code Structuring
+- a directory for page components
+
+## Refactoring
+- move `<RelatedTopic>` into its own component file
+
+## Additional Features
+- see related repositories
+- login with GitHub
+  - star a topic as logged user
+  - star a repository as logged user
+  - see if logged user has stared a topic/repository
