@@ -35,8 +35,10 @@ Just for preference, to avoid type errors
 
 ## Refactoring
 - move `<RelatedTopic>` into its own component file
+- `<Search/>` component in a `<header>` tag
 
 ## Additional Features
+- unit tests
 - see related repositories
 - login with GitHub
   - star a topic as logged user
