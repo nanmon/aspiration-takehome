@@ -1,6 +1,6 @@
-import { gql, useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useTopicQuery } from "../graphql/topic";
 
 const Page = styled.div`
   width: 100%;
@@ -23,29 +23,9 @@ const StyledLink = styled(Link)`
   color: white;
 `;
 
-const TOPIC_QUERY = gql`
-  query FindTopic($search: String!) {
-    topic(name: $search) {
-      id
-      name
-      stargazerCount
-      relatedTopics(first: 10) {
-        id
-        name
-        stargazerCount
-      }
-    }
-  }
-`;
-
 export default function TopicPage() {
   const { topic } = useParams();
-  const { loading, error, data } = useQuery<{ topic: TopicWithRelatedTopics }>(
-    TOPIC_QUERY,
-    {
-      variables: { search: topic },
-    }
-  );
+  const { loading, error, data } = useTopicQuery(topic!)
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -67,12 +47,3 @@ export default function TopicPage() {
   );
 }
 
-interface Topic {
-  id: number;
-  name: string;
-  stargazerCount: number;
-}
-
-interface TopicWithRelatedTopics extends Topic {
-  relatedTopics: Topic[];
-}
