@@ -35,7 +35,7 @@ export default function TopicPage() {
       <h1>{topic}</h1>
       <TopicList>
         {data!.topic.relatedTopics.map((rtopic) => (
-          <RelatedTopic>
+          <RelatedTopic key={rtopic.id}>
             <h2>
               <StyledLink to={`/${rtopic.name}`}>{rtopic.name}</StyledLink>
             </h2>
