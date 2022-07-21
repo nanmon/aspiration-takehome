@@ -17,11 +17,11 @@ const RelatedTopic = styled.div`
   flex-direction: column;
   border-bottom: 1px solid #30363d;
   padding-bottom: 16px;
-`
+`;
 
 const StyledLink = styled(Link)`
   color: white;
-`
+`;
 
 const TOPIC_QUERY = gql`
   query FindTopic($search: String!) {
@@ -30,17 +30,22 @@ const TOPIC_QUERY = gql`
       name
       stargazerCount
       relatedTopics(first: 10) {
-        id name stargazerCount
+        id
+        name
+        stargazerCount
       }
     }
   }
-`
+`;
 
 export default function TopicPage() {
-  const { topic } = useParams()
-  const { loading, error, data } = useQuery<{topic: TopicWithRelatedTopics}>(TOPIC_QUERY, {
-    variables: { search: topic }
-  });
+  const { topic } = useParams();
+  const { loading, error, data } = useQuery<{ topic: TopicWithRelatedTopics }>(
+    TOPIC_QUERY,
+    {
+      variables: { search: topic },
+    }
+  );
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -49,7 +54,7 @@ export default function TopicPage() {
     <Page>
       <h1>{topic}</h1>
       <TopicList>
-        {data!.topic.relatedTopics.map(rtopic => (
+        {data!.topic.relatedTopics.map((rtopic) => (
           <RelatedTopic>
             <h2>
               <StyledLink to={`/${rtopic.name}`}>{rtopic.name}</StyledLink>
@@ -59,7 +64,7 @@ export default function TopicPage() {
         ))}
       </TopicList>
     </Page>
-  )
+  );
 }
 
 interface Topic {
@@ -69,5 +74,5 @@ interface Topic {
 }
 
 interface TopicWithRelatedTopics extends Topic {
-  relatedTopics: Topic[]
+  relatedTopics: Topic[];
 }
