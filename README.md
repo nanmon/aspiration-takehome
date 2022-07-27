@@ -39,6 +39,8 @@ Just for preference, to avoid type errors
 
 # Future Improvements
 
+Here's a few improvements that can be made regarding code structuring, refactoring and additional features
+
 ## Code Structuring
 
 - a directory for page components
@@ -50,7 +52,6 @@ Just for preference, to avoid type errors
 
 ## Additional Features
 
-- unit tests
 - see related repositories
 - login with GitHub
   - star a topic as logged user
