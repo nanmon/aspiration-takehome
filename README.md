@@ -17,6 +17,12 @@ Set up your GitHub API Token and create a `.env.local` file as described in `.en
 npm start
 ```
 
+# Testing
+
+```
+npm test
+```
+
 # Dev Notes
 
 Quick review of libs used
