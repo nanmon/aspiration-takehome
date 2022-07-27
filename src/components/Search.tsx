@@ -43,6 +43,7 @@ export default function Search() {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        data-testid="search-input"
       />
       <Button type="submit">Search</Button>
     </SearchForm>

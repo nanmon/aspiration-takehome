@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-const TOPIC_QUERY = gql`
+export const TOPIC_QUERY = gql`
   query FindTopic($search: String!) {
     topic(name: $search) {
       id
@@ -22,11 +22,11 @@ export function useTopicQuery(topic: string) {
 }
 
 interface Topic {
-  id: number;
+  id: string;
   name: string;
   stargazerCount: number;
 }
 
-interface TopicWithRelatedTopics extends Topic {
+export interface TopicWithRelatedTopics extends Topic {
   relatedTopics: Topic[];
 }
