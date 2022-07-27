@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useTopicQuery } from "../graphql/topic";
+import Error from "./Error";
 
 const Page = styled.div`
   width: 100%;
@@ -41,7 +42,7 @@ export default function TopicPage() {
   }, [data])
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <Error error={error}/>;
   return (
     <Page>
       <h1>{topic}</h1>
